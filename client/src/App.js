@@ -1,25 +1,69 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import axios from 'axios'
+
+import AllPlaces from './pages/AllPlaces'
+import SinglePlace from './pages/SinglePlace'
+import NewPlace from './pages/NewPlace'
+
+
+//Autentifikacijos komponentai
+
+
+import Login from './pages/Login'
+import Register from './pages/Register'
+
+//Kontekstas
+import MainContext from './context/MainContext'
+
+//Baziniai komponentai
+import Header from './components/Header/Header'
+import Alert from './components/Alert/Alert'
 import './App.css';
 
-function App() {
+const App = () => {
+
+  const [alert, setAlert] = useState({
+    message: '',
+    status: ''
+  })
+  const [userInfo, setUserInfo] = useState({})
+
+  const contextValues = { alert, setAlert, userInfo, setUserInfo }
+
+  useEffect(() => {
+    axios.get('/api/users/check-auth/')
+    .then(resp => {
+      setUserInfo(resp.data)
+    })
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <MainContext.Provider value={contextValues}>
+        <Header />
+        <div className="container">
+          <Alert />
+          <Routes>
+  
+
+            <Route path="" element={<AllPlaces />} />
+
+
+             <Route path="places/single/:id" element={<SinglePlace />} />
+             <Route path="places/new" element={<NewPlace />} />
+
+
+
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} /> 
+            
+            <Route path="*" element={<Login />} /> 
+          </Routes>
+        </div>
+      </MainContext.Provider>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App

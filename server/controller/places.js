@@ -49,6 +49,20 @@ Router.get('/single/:id', async (req, res) => {
     }
 })
 
+// Router.get('/single/:id', async (req, res) => {
+//     try {
+//         const place = await db.Places.findByPk(req.params.id, {
+//             include: {
+//                 model: db.Ratings,
+//                 include: db.Users
+//             }
+//         })
+//         res.json(place)
+//     } catch {
+//         res.status(500).send('Įvyko serverio klaida')
+//     }
+// })
+
 Router.post('/new', placesValidator, async (req, res) => {
     try {
         await db.Places.create(req.body)
