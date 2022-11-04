@@ -6,6 +6,8 @@ import AllPlaces from './pages/AllPlaces'
 import SinglePlace from './pages/SinglePlace'
 import NewPlace from './pages/NewPlace'
 
+import Admin from './pages/admin/Admin'
+
 
 //Autentifikacijos komponentai
 
@@ -31,12 +33,12 @@ const App = () => {
 
   const contextValues = { alert, setAlert, userInfo, setUserInfo }
 
-  useEffect(() => {
-    axios.get('/api/users/check-auth/')
-    .then(resp => {
-      setUserInfo(resp.data)
-    })
-  }, [])
+  // useEffect(() => {
+  //   axios.get('/api/users/check-auth/')
+  //   .then(resp => {
+  //     setUserInfo(resp.data)
+  //   })
+  // }, [])
 
   return (
     <BrowserRouter>
@@ -45,6 +47,8 @@ const App = () => {
         <div className="container">
           <Alert />
           <Routes>
+
+            <Route path="/admin" element={<Admin />} />
   
 
             <Route path="" element={<AllPlaces />} />

@@ -5,10 +5,6 @@ import axios from 'axios'
 
 
 
-
-// import './SinglePost.css'
-
-
 const SinglePlace = () => {
     const { id } = useParams()
     const navigate = useNavigate()
@@ -44,7 +40,7 @@ const SinglePlace = () => {
     const handleForm = (e) => {
         e.preventDefault()
         
-        axios.post('/api/ratings/', { comment, postId: id })
+        axios.post('/api/ratings/', { comment, placeId: id })
         .then(resp => {
             setAlert({
                 message: resp.data,
@@ -88,16 +84,16 @@ const SinglePlace = () => {
                 <div className="content">
                     {place.description}
                 </div>
-                {place.comments && (
+                {place.ratings && (
                     <div className="comments">
                     
-                        {place.comments.map((entry) => (
+                        {place.ratings.map((entry) => (
                             <div
                                 key={entry.id}
                             
                             >
                                 <div className="user mb-2">
-                                <strong className="date d-block">{entry.user.username}</strong>
+                              
                           
                             </div>
                                 <div className="single-comment">{entry.comment}</div>

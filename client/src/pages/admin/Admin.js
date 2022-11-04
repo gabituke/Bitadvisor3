@@ -2,10 +2,10 @@ import { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import MainContext from '../../../context/MainContext'
+import MainContext from '../../context/MainContext'
 
-const Orders = () => {
-    const [orders, setOrders] = useState([])
+const Admin = () => {
+    const [posts, setPosts] = useState([])
     const [refresh, setRefresh] = useState(false)
     const navigate = useNavigate()
     const { setAlert } = useContext(MainContext)
@@ -37,7 +37,7 @@ const Orders = () => {
 
     useEffect(() => {
         axios.get('/api/places/')
-            .then(resp => setOrders(resp.data))
+            .then(resp => setPosts(resp.data))
             .catch(error => {
                 console.log(error)
                 setAlert({
@@ -50,39 +50,34 @@ const Orders = () => {
     return (
         <>
             <div className="page-heading">
-                <h1>Užsakymai</h1>
+                <h1>Įrašai</h1>
             </div>
-            {orders ?
+            {posts ?
                 <table className="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
                             
-                            <th>Autorius</th>
-                            <th>Paslauga</th>
+                           
+                            <th>Pavadinims</th>
                             <th>Statusas</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {orders.map(order =>
-                            <tr key={order.id}>
-                                <td>{order.id}</td>
+                        {posts.map(post =>
+                            <tr key={post.id}>
+                                <td>{post.id}</td>
                        
-                                <td>{order.user && order.user.first_name + ' ' + order.user.last_name}</td>
-                                <td>{order.service?.name}</td>
-                                <td>{order.status ? 'Patvirtintas' : 'Nepatvirtintas'}</td>
+                              
+                                <td>{post.title}</td>
+                                <td>{post.status ? 'Patvirtintas' : 'Nepatvirtintas'}</td>
                                 <td>
                                     <div className="d-flex justify-content-end gap-2">
-                                        <Link 
-                                        to={'/admin/orders/edit/' + order.id} 
-                                        className="btn btn-primary"
-                                        >
-                                            Redaguoti
-                                        </Link>
+                                        
                                         <button 
                                         className="btn btn-warning" 
-                                        onClick={() => handleDelete(order.id)}
+                                        onClick={() => handleDelete(post.id)}
                                         >
                                             Ištrinti
                                         </button>
@@ -99,4 +94,4 @@ const Orders = () => {
     )
 }
 
-export default Orders
+export default Admin

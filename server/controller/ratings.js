@@ -5,11 +5,11 @@ import db from '../database/connect.js'
 
 const Router = express.Router()
 
-Router.post('/', commentsValidator, async (req, res) => {
+Router.post('/', async (req, res) => {
     try {
         //prisijungusio vartotojo priskyrimas
-        req.body.userId = req.session.user.id
-        await db.Comments.create(req.body)
+       
+        await db.Ratings.create(req.body)
         res.send('Komentaras sėkmingai išsaugotas')
     } catch (error) {
         console.log(error)

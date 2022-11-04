@@ -49,11 +49,11 @@ const Login = () => {
             <form onSubmit={handleSubmit}>
                 <div className="form-group mb-2">
                     <label className="mb-1">El. pašto adresas:</label>
-                    <input type="email" name="email" className="form-control" onChange={handleForm} placeholder="albertas.cenkus@gmail.com" />
+                    <input type="email" name="email" className="form-control" onChange={handleForm} placeholder="vardenis@gmail.com" />
                 </div>
                 <div className="form-group mb-3">
                     <label className="mb-1">Slaptažodis:</label>
-                    <input type="password" name="password" className="form-control" onChange={handleForm} placeholder="albertasnoributiore" />
+                    <input type="password" name="password" className="form-control" onChange={handleForm} placeholder="labas123" />
                 </div>
                 <button className="btn btn-primary">Prisijungti</button>
             </form>

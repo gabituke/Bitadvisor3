@@ -3,16 +3,14 @@ import { DataTypes } from 'sequelize'
 const Ratings = (sequelize) => {
     const Schema = {
         rating: {
-            type: DataTypes.INTEGER, 
-            allowNull: false 
+            type: DataTypes.INTEGER
         },
         comment: {
             type: DataTypes.STRING,
             allowNull: false
         },
         photo: {
-            type: DataTypes.STRING,
-            allowNull: true
+            type: DataTypes.STRING
         }
     }
 

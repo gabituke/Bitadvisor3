@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const Saloons = () => {
 	const [ places, setPlaces ] = useState([]);
+	const [post, setPost] = useState({})
 	const { setAlert } = useContext(MainContext);
 
 	useEffect(
@@ -24,16 +25,19 @@ const Saloons = () => {
 
 	return (
 		<div className="album py-5 bg-light">
-			
-						<div className="container" >
-							<div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" >
-								
-							{places.length > 0 &&
-				places.map((article) => {
-					return (
-
+			<div className="container">
+				<div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+					{places.length > 0 &&
+						places.map((article) => {
+							return (
 								<div className="col" key={article.id}>
-									<div className="card shadow-sm">
+
+
+
+
+
+
+									<div className="card shadow-sm container-img">
 										<Link to={'/places/single/' + article.id}>
 											<img
 												src={article.photo}
@@ -43,17 +47,17 @@ const Saloons = () => {
 												height="225"
 												focusable="false"
 											/>
-											<p className="img-hover">{article.title}</p>
+											<div className="overlay">
+												<div className="text">{article.title}</div>
+											</div>
+											
 										</Link>
 									</div>
 								</div>
-
-);
-})}
-
-							</div>
-						</div>
-				
+							);
+						})}
+				</div>
+			</div>
 		</div>
 	);
 };
