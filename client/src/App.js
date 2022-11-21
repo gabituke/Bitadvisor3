@@ -7,6 +7,7 @@ import SinglePlace from './pages/SinglePlace'
 import NewPlace from './pages/NewPlace'
 
 import Admin from './pages/admin/Admin'
+import EditPlace from './pages/admin/EditPlace'
 
 
 //Autentifikacijos komponentai
@@ -49,6 +50,7 @@ const App = () => {
           <Routes>
 
             <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/edit/:id" element={<EditPlace />} />
   
 
             <Route path="" element={<AllPlaces />} />

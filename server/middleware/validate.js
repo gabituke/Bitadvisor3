@@ -58,7 +58,8 @@ export const placesValidator = (req, res, next) => {
     const schema = Joi.object({
         description: Joi.string().min(2).required(),
         title: Joi.string().min(2).required(),
-        photo: Joi.string().required()
+        photo: Joi.string().required(),
+        status: Joi.number().integer()
     })
 
     validate(schema, req, res, next)

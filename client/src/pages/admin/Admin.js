@@ -74,7 +74,12 @@ const Admin = () => {
                                 <td>{post.status ? 'Patvirtintas' : 'Nepatvirtintas'}</td>
                                 <td>
                                     <div className="d-flex justify-content-end gap-2">
-                                        
+                                        <Link 
+                                        to={'/admin/edit/' + post.id} 
+                                        className="btn btn-primary"
+                                        >
+                                            Redaguoti
+                                        </Link>
                                         <button 
                                         className="btn btn-warning" 
                                         onClick={() => handleDelete(post.id)}
