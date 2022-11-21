@@ -36,7 +36,6 @@ const Saloons = () => {
 
 
 
-
 									<div className="card shadow-sm container-img">
 										<Link to={'/places/single/' + article.id}>
 											<img
@@ -53,6 +52,7 @@ const Saloons = () => {
 											
 										</Link>
 									</div>
+						
 								</div>
 							);
 						})}

@@ -10,6 +10,7 @@ const EditOrder = () => {
 
     const [form, setForm] = useState({
         title: '',
+        description: '',
         status: ''
     })
 
@@ -73,6 +74,14 @@ const EditOrder = () => {
                             className="form-control" 
                             onChange={handleForm} 
                             value={form.title} 
+                        />
+                        <label className="mb-1">Aprašymas:</label>
+                        <input 
+                            type="text" 
+                            name="description" 
+                            className="form-control" 
+                            onChange={handleForm} 
+                            value={form.description} 
                         />
                     </div>
                     <div className="form-group mb-2">

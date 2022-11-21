@@ -46,7 +46,7 @@ const NewPlace = () => {
         <>
             <div className="container mw-50">
                 <div className="page-heading">
-                    <h1>Naujas grožio salonas</h1>
+                    <h1>Naujas įrašas</h1>
                 </div>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div className="form-group mb-2">

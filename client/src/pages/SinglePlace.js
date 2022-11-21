@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
+import './SinglePlace.css';
+
 
 
 
@@ -36,6 +38,30 @@ const SinglePlace = () => {
             navigate('/')
         })
     }, [id, navigate, refresh])
+
+
+    const handleRatings = (e, placeId) => {
+        axios.post('/api/ratings/places/' + placeId, {
+            rating: e.target.value
+        })
+        .then(resp => {
+            setAlert({
+                message: resp.data,
+                status: 'success'
+            })
+            setRefresh(!refresh)
+        })
+        .catch(error => {
+            console.log(error)
+            setAlert({
+                message: error.response.data,
+                status: 'danger'
+            })
+
+            if(error.response.status === 401)
+                navigate('/login')
+        })
+    }
 
     const handleForm = (e) => {
         e.preventDefault()
@@ -75,15 +101,29 @@ const SinglePlace = () => {
         <div className="container-single">
         
         <div className="single-post">
-                <h1>{place.title}</h1>
-                <div>
+
+
+            <dvi className ="post">
+                <div className="left">
 
                 <img src={place.photo} alt={place.title}/>
 
                 </div>
+
+
+                
+                <div className="right">
+                <h1>{place.title}</h1>
                 <div className="content">
                     {place.description}
                 </div>
+                </div>
+
+                </dvi>
+
+
+
+
                 {place.ratings && (
                     <div className="comments">
                     
@@ -93,7 +133,7 @@ const SinglePlace = () => {
                             
                             >
                                 <div className="user mb-2">
-                              
+                                <strong className="date d-block">{entry.user.username}</strong>
                           
                             </div>
                                 <div className="single-comment">{entry.comment}</div>
@@ -109,6 +149,18 @@ const SinglePlace = () => {
                                 name="comment"
                                 onChange={(e) => setComment(e.target.value)}
                             />
+                            {place.rating ? 'Jūsų įvertinimas: ' + place.ratings.rating :
+                                        <select onChange={(e) => handleRatings(e, place.placeId)}>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    }
+
+
+                                    
                             <button className="btn-single">Post</button>
                      
                     
