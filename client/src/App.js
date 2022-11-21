@@ -48,11 +48,13 @@ const App = () => {
         <div className="container">
           <Alert />
           <Routes>
-
+          {userInfo.role === 1 &&
+          <Route path="/admin">
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/edit/:id" element={<EditPlace />} />
+            </Route>
   
-
+          }
             <Route path="" element={<AllPlaces />} />
 
 

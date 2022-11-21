@@ -63,8 +63,8 @@ const Header = () => {
                                     >
                                        Naujas įrašas 
                                     </Link>
-                                    </ul>
                         <button onClick={handleLogout} className="btn btn-primary">Atsijungti</button>
+                                    </ul>
                                     </>
                         :
                         <>
