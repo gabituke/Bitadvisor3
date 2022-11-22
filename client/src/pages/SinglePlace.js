@@ -41,7 +41,7 @@ const SinglePlace = () => {
 
 
     const handleRatings = (e, placeId) => {
-        axios.post('/api/ratings/places/' + placeId, {
+        axios.post('/api/ratings/rating/' + placeId, {
             rating: e.target.value
         })
         .then(resp => {
@@ -103,7 +103,7 @@ const SinglePlace = () => {
         <div className="single-post">
 
 
-            <dvi className ="post">
+            <div className ="post">
                 <div className="left">
 
                 <img src={place.photo} alt={place.title}/>
@@ -111,7 +111,7 @@ const SinglePlace = () => {
                 </div>
 
 
-                
+
                 <div className="right">
                 <h1>{place.title}</h1>
                 <div className="content">
@@ -119,7 +119,7 @@ const SinglePlace = () => {
                 </div>
                 </div>
 
-                </dvi>
+                </div>
 
 
 
@@ -149,7 +149,7 @@ const SinglePlace = () => {
                                 name="comment"
                                 onChange={(e) => setComment(e.target.value)}
                             />
-                            {place.rating ? 'Jūsų įvertinimas: ' + place.ratings.rating :
+                            {place.ratings ? 'Jūsų įvertinimas: ' + place.ratings.rating :
                                         <select onChange={(e) => handleRatings(e, place.placeId)}>
                                             <option value="1">1</option>
                                             <option value="2">2</option>

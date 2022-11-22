@@ -34,12 +34,12 @@ const App = () => {
 
   const contextValues = { alert, setAlert, userInfo, setUserInfo }
 
-  // useEffect(() => {
-  //   axios.get('/api/users/check-auth/')
-  //   .then(resp => {
-  //     setUserInfo(resp.data)
-  //   })
-  // }, [])
+  useEffect(() => {
+    axios.get('/api/users/check-auth/')
+    .then(resp => {
+      setUserInfo(resp.data)
+    })
+  }, [])
 
   return (
     <BrowserRouter>
